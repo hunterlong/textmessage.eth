@@ -25,4 +25,14 @@ Minimum: $0.05 USD
 Maximum: $0.15 USD
 
 
+# Using Inside Contract
+
+```
+TextMessage txt = TextMessage(0x2D3060D18721f9509b179E8962f220bfd8Df9f5F);
+uint amount = txt.costWei
+
+txt.sendText.value(amount)("18555555555", "Hey Hey! Bleep Bloop!")
+```
+
+
 # Supported Countries
