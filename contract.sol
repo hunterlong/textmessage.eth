@@ -1,8 +1,18 @@
 /*
-   Kraken-based ETH/XBT price ticker
 
-   This contract keeps in storage an updated ETH/XBT price,
-   which is updated every ~60 seconds.
+   TEXTMESSAGE.ETH
+   
+   A contract that will allow you to send SMS messages in real life.
+   When making the sendText call, make sure you put the minimum 
+   WEI amount reqired for sending the SMS.
+   
+   Homepage: github.com/hunterlong/textmessage.eth
+   Author: Hunter Long
+   Pricing: $0.05 - $0.15 USD per SMS (sendText contract call)
+    * Be sure to fetch the contract's current cost.
+
+   sendText("18185555555", "This is a SMS message from the ethereum blockchain!")
+
 */
 
 pragma solidity ^0.4.0;
