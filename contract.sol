@@ -1058,7 +1058,7 @@ contract owned {
 
 contract TextMessage is usingOraclize, owned {
     
-    uint256 public costETH;
+    uint public costWei;
     string public apiURL;
     string LastStatus;
     string submitData;
@@ -1066,20 +1066,19 @@ contract TextMessage is usingOraclize, owned {
     string jsonData;
     
     event newOraclizeQuery(string description);
-    event newTextMessage(string price);
+    event newTextMessage(string response);
     
 
     function TextMessage() {
         oraclize_setProof(proofType_TLSNotary | proofStorage_IPFS);
-        apiURL = "https://cjx.io/text.php";
-        costETH = 5000000000000000;
+        costWei = 5000000000000;
     }
     
-    function changeCost(uint256 price) onlyOwner {
-        costETH = price;
+    function changeCost(uint price) onlyOwner {
+        costWei = price;
     }
     
-    function changeRate(string newUrl) onlyOwner {
+    function changeApiUrl(string newUrl) onlyOwner {
         apiURL = newUrl;
     }
     
@@ -1097,17 +1096,13 @@ contract TextMessage is usingOraclize, owned {
     }
     
     function sendText(string phoneNumber, string textBody) payable {
-        if(msg.value < costETH) throw;
+        if(msg.value < costWei) throw;
         if (oraclize.getPrice("URL") > this.balance) {
-            newOraclizeQuery("Oraclize query was NOT sent, please add some ETH to cover for the query fee");
+            newOraclizeQuery("Oraclize query was NOT sent");
         } else {
-            
-            submitData = strConcat('{"to" : "',phoneNumber,'", "body: "',textBody,'"}');
-            
-            newOraclizeQuery("Oraclize query was sent, standing by for the answer..");
-            
+            submitData = strConcat('{"to":"', phoneNumber, '","msg":"', textBody, '"}');
+            newOraclizeQuery('Sending New Text Message Request');
             orcData = strConcat("json(", submitData, ").sent");
-            
             oraclize_query("URL", apiURL, submitData);
         }
     }
