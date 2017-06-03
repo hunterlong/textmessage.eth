@@ -1,5 +1,8 @@
+<center><img width="240" src="http://i.imgur.com/OhQ1ngW.png"></center>
+
 # textmessage.eth
 ### Send SMS messages via Ethereum Contracts
+
 
 - Mainnet: <not online yet>
 
