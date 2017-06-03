@@ -1,18 +1,8 @@
 /*
+   Kraken-based ETH/XBT price ticker
 
-   TEXTMESSAGE.ETH
-   
-   A contract that will allow you to send SMS messages in real life.
-   When making the sendText call, make sure you put the minimum 
-   WEI amount reqired for sending the SMS.
-   
-   Homepage: github.com/hunterlong/textmessage.eth
-   Author: Hunter Long
-   Pricing: $0.05 - $0.15 USD per SMS (sendText contract call)
-    * Be sure to fetch the contract's current cost.
-
-   sendText("18185555555", "This is a SMS message from the ethereum blockchain!")
-
+   This contract keeps in storage an updated ETH/XBT price,
+   which is updated every ~60 seconds.
 */
 
 pragma solidity ^0.4.0;
@@ -1079,7 +1069,7 @@ contract TextMessage is usingOraclize, owned {
 
     function TextMessage() {
         oraclize_setProof(proofType_TLSNotary | proofStorage_IPFS);
-        costWei = 5000000000000;
+        costWei = 450000000000000;
     }
     
     function changeCost(uint price) onlyOwner {
@@ -1104,7 +1094,7 @@ contract TextMessage is usingOraclize, owned {
     }
     
     function sendText(string phoneNumber, string textBody) payable {
-        if(msg.value < costWei) throw;
+        if(msg.value < (costWei * 1 wei)) throw;
         if (oraclize.getPrice("URL") > this.balance) {
         } else {
             submitData = strConcat('{"to":"', phoneNumber, '","msg":"', textBody, '"}');
