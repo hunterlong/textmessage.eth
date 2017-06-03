@@ -7,11 +7,19 @@
 
 
 # Send a Text Message
+TextMessage.eth contract just needs a cellphone number, and a body that is less than 196 characters.
+
+```
+sendText("18555555555", "This is a text message made from the ethereum blockchain")
+# Be sure to send the cost as Ethereum!
+```
+
 
 # Pricing
 Please pay the minimum Cost WEI for the contract to successfull process.
 
 Minimum: $0.05 USD
 Maximum: $0.15 USD
+
 
 # Supported Countries
