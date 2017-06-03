@@ -1065,9 +1065,7 @@ contract TextMessage is usingOraclize, owned {
     string orcData;
     string jsonData;
     
-    event newOraclizeQuery(string description);
     event newTextMessage(string response);
-    
 
     function TextMessage() {
         oraclize_setProof(proofType_TLSNotary | proofStorage_IPFS);
@@ -1084,7 +1082,7 @@ contract TextMessage is usingOraclize, owned {
     
     
     function withdraw() onlyOwner {
-        owner.transfer(this.balance);
+        owner.transfer(this.balance - costWei);
     }
 
     function __callback(bytes32 myid, string result, bytes proof) {
@@ -1098,10 +1096,8 @@ contract TextMessage is usingOraclize, owned {
     function sendText(string phoneNumber, string textBody) payable {
         if(msg.value < costWei) throw;
         if (oraclize.getPrice("URL") > this.balance) {
-            newOraclizeQuery("Oraclize query was NOT sent");
         } else {
             submitData = strConcat('{"to":"', phoneNumber, '","msg":"', textBody, '"}');
-            newOraclizeQuery('Sending New Text Message Request');
             orcData = strConcat("json(", submitData, ").sent");
             oraclize_query("URL", apiURL, submitData);
         }
