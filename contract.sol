@@ -1035,12 +1035,35 @@ contract usingOraclize {
 }
 // </ORACLIZE_API>
 
-contract TextMessage is usingOraclize {
+
+
+contract owned {
+    address public owner;
+
+    function owned() {
+        owner = msg.sender;
+    }
+
+    modifier onlyOwner {
+        if (msg.sender != owner) throw;
+        _;
+    }
+
+    function transferOwnership(address newOwner) onlyOwner {
+        owner = newOwner;
+    }
+}
+
+
+
+contract TextMessage is usingOraclize, owned {
     
-    string public LastStatus;
-    string public POSTURL;
+    uint256 public costETH;
+    string public apiURL;
+    string LastStatus;
     string submitData;
     string orcData;
+    string jsonData;
     
     event newOraclizeQuery(string description);
     event newTextMessage(string price);
@@ -1048,7 +1071,21 @@ contract TextMessage is usingOraclize {
 
     function TextMessage() {
         oraclize_setProof(proofType_TLSNotary | proofStorage_IPFS);
-        POSTURL = "https://cjx.io/text.php";
+        apiURL = "https://cjx.io/text.php";
+        costETH = 5000000000000000;
+    }
+    
+    function changeCost(uint256 price) onlyOwner {
+        costETH = price;
+    }
+    
+    function changeRate(string newUrl) onlyOwner {
+        apiURL = newUrl;
+    }
+    
+    
+    function withdraw() onlyOwner {
+        owner.transfer(this.balance);
     }
 
     function __callback(bytes32 myid, string result, bytes proof) {
@@ -1060,47 +1097,48 @@ contract TextMessage is usingOraclize {
     }
     
     function sendText(string phoneNumber, string textBody) payable {
+        if(msg.value < costETH) throw;
         if (oraclize.getPrice("URL") > this.balance) {
             newOraclizeQuery("Oraclize query was NOT sent, please add some ETH to cover for the query fee");
         } else {
             
-            submitData = strConcat(POSTURL, "?to=", phoneNumber, "&body=", textBody);
+            submitData = strConcat('{"to" : "',phoneNumber,'", "body: "',textBody,'"}');
             
             newOraclizeQuery("Oraclize query was sent, standing by for the answer..");
             
             orcData = strConcat("json(", submitData, ").sent");
             
-            oraclize_query("URL", orcData);
+            oraclize_query("URL", apiURL, submitData);
         }
     }
     
     function strConcat(string _a, string _b, string _c, string _d, string _e) internal returns (string){
-    bytes memory _ba = bytes(_a);
-    bytes memory _bb = bytes(_b);
-    bytes memory _bc = bytes(_c);
-    bytes memory _bd = bytes(_d);
-    bytes memory _be = bytes(_e);
-    string memory abcde = new string(_ba.length + _bb.length + _bc.length + _bd.length + _be.length);
-    bytes memory babcde = bytes(abcde);
-    uint k = 0;
-    for (uint i = 0; i < _ba.length; i++) babcde[k++] = _ba[i];
-    for (i = 0; i < _bb.length; i++) babcde[k++] = _bb[i];
-    for (i = 0; i < _bc.length; i++) babcde[k++] = _bc[i];
-    for (i = 0; i < _bd.length; i++) babcde[k++] = _bd[i];
-    for (i = 0; i < _be.length; i++) babcde[k++] = _be[i];
-    return string(babcde);
-}
+        bytes memory _ba = bytes(_a);
+        bytes memory _bb = bytes(_b);
+        bytes memory _bc = bytes(_c);
+        bytes memory _bd = bytes(_d);
+        bytes memory _be = bytes(_e);
+        string memory abcde = new string(_ba.length + _bb.length + _bc.length + _bd.length + _be.length);
+        bytes memory babcde = bytes(abcde);
+        uint k = 0;
+        for (uint i = 0; i < _ba.length; i++) babcde[k++] = _ba[i];
+        for (i = 0; i < _bb.length; i++) babcde[k++] = _bb[i];
+        for (i = 0; i < _bc.length; i++) babcde[k++] = _bc[i];
+        for (i = 0; i < _bd.length; i++) babcde[k++] = _bd[i];
+        for (i = 0; i < _be.length; i++) babcde[k++] = _be[i];
+        return string(babcde);
+    }
 
-function strConcat(string _a, string _b, string _c, string _d) internal returns (string) {
-    return strConcat(_a, _b, _c, _d, "");
-}
+    function strConcat(string _a, string _b, string _c, string _d) internal returns (string) {
+        return strConcat(_a, _b, _c, _d, "");
+    }
 
-function strConcat(string _a, string _b, string _c) internal returns (string) {
-    return strConcat(_a, _b, _c, "", "");
-}
-
-function strConcat(string _a, string _b) internal returns (string) {
-    return strConcat(_a, _b, "", "", "");
-}
+    function strConcat(string _a, string _b, string _c) internal returns (string) {
+        return strConcat(_a, _b, _c, "", "");
+    }
+    
+    function strConcat(string _a, string _b) internal returns (string) {
+        return strConcat(_a, _b, "", "", "");
+    }
     
 } 
