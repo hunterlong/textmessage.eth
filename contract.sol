@@ -1,11 +1,16 @@
 /*
-   Kraken-based ETH/XBT price ticker
 
-   This contract keeps in storage an updated ETH/XBT price,
-   which is updated every ~60 seconds.
+   TEXTMESSAGE.ETH
+   
+   A Ethereum contract to send SMS message through the blockchain.
+   This contract does require of msg.value of $0.08-$0.15 USD to cover
+   the price of sending a text message to the real world.
+   
+   sendText("18888888888", "This is a text message from the blockchain!");
+   
 */
 
-pragma solidity ^0.4.0;
+pragma solidity ^0.4.11;
 
 // <ORACLIZE_API>
 /*
