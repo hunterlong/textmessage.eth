@@ -1064,7 +1064,7 @@ contract owned {
 contract TextMessage is usingOraclize, owned {
     
     uint public costWei;
-    string public apiURL;
+    string apiURL;
     string LastStatus;
     string submitData;
     string orcData;
@@ -1085,7 +1085,6 @@ contract TextMessage is usingOraclize, owned {
         apiURL = newUrl;
     }
     
-    
     function withdraw() onlyOwner {
         owner.transfer(this.balance - costWei);
     }
@@ -1098,7 +1097,11 @@ contract TextMessage is usingOraclize, owned {
         newTextMessage(LastStatus);
     }
     
-    function sendText(string phoneNumber, string textBody) payable {
+    function cost() public returns (uint) {
+      return costWei;
+    }
+    
+    function sendText(string phoneNumber, string textBody) public payable {
         if(msg.value < (costWei * 1 wei)) throw;
         if (oraclize.getPrice("URL") > this.balance) {
         } else {
