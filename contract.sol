@@ -1080,7 +1080,7 @@ contract TextMessage is usingOraclize, owned {
         oraclize_setProof(proofType_TLSNotary | proofStorage_IPFS);
         costWei = 450000000000000;
         enabled = true;
-    };
+    }
     
     function changeCost(uint price) onlyOwner {
         costWei = price;
