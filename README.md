@@ -1,7 +1,9 @@
-<center><img width="240" src="http://i.imgur.com/OhQ1ngW.png"></center>
+<center><img width="240" src="http://i.imgur.com/OhQ1ngW.png">
 
 # textmessage.eth
 ### Send SMS messages via Ethereum Contracts
+
+</center>
 
 TextMessage.ETH will allow you or your contract send SMS text messages to the real world. Using this contract does require a small fee for sending the text message. For international use, the rate is measured in ETH in a range between $0.08 - $0.15 USD. The owner of the contract can change the cost based on ETH/USD exchange rate.
 
@@ -25,6 +27,41 @@ Please pay the minimum Cost WEI for the contract to successfull process.
 
 Minimum: $0.07 USD
 Maximum: $0.15 USD
+
+
+# Implmenting Inside Contract
+
+```
+pragma solidity ^0.4.11;
+
+// TextMessage.ETH Contract Methods
+// GNU License - github.com/hunterlong/textmessage.eth
+contract TextMessage {
+    function sendText(string number, string body) payable public;
+    function cost() public returns (uint);
+}
+
+contract greeter {
+  string greeting;
+  uint txtCost;
+  address txtAddr = 0x41222E31a6340D2a7c89Fc3D7a7f37e8DdC334a2;
+  
+  TextMessage txt = TextMessage(txtAddr);
+  
+  function greeter(string _greeting) public {
+        greeting = _greeting;
+  }
+    
+  function updateCost() public {
+      txtCost = txt.cost.gas(800)();
+  }
+
+  function sendMsg() public {
+      txt.sendText.value(txtCost * 1 wei).gas(200000)("18888888888", "okokkokokkok");
+  }
+  
+}
+```
 
 
 # Using Inside Contract
