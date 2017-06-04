@@ -25,11 +25,11 @@ sendText("18555555555", "This is a text message made from the ethereum blockchai
 # Pricing
 Please pay the minimum Cost WEI for the contract to successfull process.
 
-Minimum: $0.07 USD
+Minimum: $0.08 USD
 Maximum: $0.15 USD
 
 
-# Implmenting Inside Contract
+# Implementing Inside Contracts
 
 ```
 pragma solidity ^0.4.11;
@@ -37,14 +37,14 @@ pragma solidity ^0.4.11;
 // TextMessage.ETH Contract Methods
 // GNU License - github.com/hunterlong/textmessage.eth
 contract TextMessage {
-    function sendText(string number, string body) payable public;
-    function cost() public returns (uint);
+    function sendText(string number, string body) payable public;  // requires minimum wei payment
+    function cost() public returns (uint);  // returns minimum wei amount for SMS message
 }
 
 contract greeter {
   string greeting;
   uint txtCost;
-  address txtAddr = 0x41222E31a6340D2a7c89Fc3D7a7f37e8DdC334a2;
+  address txtAddr = 0x41222E31a6340D2a7c89Fc3D7a7f37e8DdC334a2;  // ropsten testnet
   
   TextMessage txt = TextMessage(txtAddr);
   
