@@ -1065,6 +1065,7 @@ contract TextMessage is usingOraclize, owned {
     
     uint public costWei;
     bool public enabled;
+    uint public postCost;
     string apiURL;
     string LastStatus;
     string submitData;
@@ -1077,13 +1078,13 @@ contract TextMessage is usingOraclize, owned {
     event updateEnabled(string newStatus);
 
     function TextMessage() {
-        oraclize_setProof(proofType_TLSNotary | proofStorage_IPFS);
         costWei = 450000000000000;
         enabled = true;
     }
     
     function changeCost(uint price) onlyOwner {
         costWei = price;
+        postCost = oraclize.getPrice("URL");
         updateCost(costWei);
     }
     
@@ -1113,12 +1114,9 @@ contract TextMessage is usingOraclize, owned {
     function sendText(string phoneNumber, string textBody) public payable {
         if(!enabled) throw;
         if(msg.value < (costWei * 1 wei)) throw;
-        if (oraclize.getPrice("URL") > this.balance) {
-        } else {
-            submitData = strConcat('{"to":"', phoneNumber, '","msg":"', textBody, '"}');
-            orcData = strConcat("json(", submitData, ").sent");
-            oraclize_query("URL", apiURL, submitData);
-        }
+        if (postCost > this.balance) throw;
+        submitData = strConcat('{"to":"', phoneNumber, '","msg":"', textBody, '"}');
+        oraclize_query("URL", apiURL, submitData);
     }
     
     function __callback(bytes32 myid, string result, bytes proof) {
