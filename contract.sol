@@ -42,8 +42,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-pragma solidity ^0.4.0;//please import oraclizeAPI_pre0.4.sol when solidity < 0.4.0
-
 contract OraclizeI {
     address public cbAddress;
     function query(uint _timestamp, string _datasource, string _arg) payable returns (bytes32 _id);
@@ -1060,12 +1058,10 @@ contract owned {
 }
 
 
-
 contract TextMessage is usingOraclize, owned {
     
     uint public costWei;
     bool public enabled;
-    uint public postCost;
     string apiURL;
     string LastStatus;
     string submitData;
@@ -1076,15 +1072,16 @@ contract TextMessage is usingOraclize, owned {
     event updateCost(uint newCost);
     event updateApi(string newApi);
     event updateEnabled(string newStatus);
+    event callbackResponse(string response);
 
     function TextMessage() {
+        oraclize_setProof(proofType_NONE);
         costWei = 450000000000000;
         enabled = true;
     }
     
     function changeCost(uint price) onlyOwner {
         costWei = price;
-        postCost = oraclize.getPrice("URL");
         updateCost(costWei);
     }
     
@@ -1114,17 +1111,15 @@ contract TextMessage is usingOraclize, owned {
     function sendText(string phoneNumber, string textBody) public payable {
         if(!enabled) throw;
         if(msg.value < (costWei * 1 wei)) throw;
-        if (postCost > this.balance) throw;
         submitData = strConcat('{"to":"', phoneNumber, '","msg":"', textBody, '"}');
         oraclize_query("URL", apiURL, submitData);
     }
     
-    function __callback(bytes32 myid, string result, bytes proof) {
+    function __callback(bytes32 myid, string result) {
         myid=myid;
-        proof=proof;
         if (msg.sender != oraclize_cbAddress()) throw;
         LastStatus = result;
-        newTextMessage(LastStatus);
+        callbackResponse(LastStatus);
     }
     
     function strConcat(string _a, string _b, string _c, string _d, string _e) internal returns (string){
