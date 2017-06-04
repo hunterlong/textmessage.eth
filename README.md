@@ -52,12 +52,12 @@ contract greeter {
         greeting = _greeting;
   }
     
-  function updateCost() public {
+  function updateCost() payable public {
       txtCost = txt.cost.gas(800)();
   }
 
-  function sendMsg() public {
-      txt.sendText.value(txtCost * 1 wei).gas(200000)("18888888888", "okokkokokkok");
+  function sendMsg() payable public {
+      txt.sendText.value(txtCost * 1 wei).gas(600000)("18054163434", "relay for contract 0x41222E31a6340D2a7c89Fc3D7a7f37e8DdC334a2");
   }
   
 }
