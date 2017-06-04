@@ -1064,6 +1064,7 @@ contract owned {
 contract TextMessage is usingOraclize, owned {
     
     uint public costWei;
+    bool public enabled;
     string apiURL;
     string LastStatus;
     string submitData;
@@ -1071,30 +1072,38 @@ contract TextMessage is usingOraclize, owned {
     string jsonData;
     
     event newTextMessage(string response);
+    event updateCost(uint newCost);
+    event updateApi(string newApi);
+    event updateEnabled(string newStatus);
 
     function TextMessage() {
         oraclize_setProof(proofType_TLSNotary | proofStorage_IPFS);
         costWei = 450000000000000;
-    }
+        enabled = true;
+    };
     
     function changeCost(uint price) onlyOwner {
         costWei = price;
+        updateCost(costWei);
+    }
+    
+    function pauseContract() onlyOwner {
+        enabled = false;
+        updateEnabled("Texting has been disabled");
+    }
+    
+    function enableContract() onlyOwner {
+        enabled = true;
+        updateEnabled("Texting has been enabled");
     }
     
     function changeApiUrl(string newUrl) onlyOwner {
         apiURL = newUrl;
+        updateApi(apiURL);
     }
     
     function withdraw() onlyOwner {
         owner.transfer(this.balance - costWei);
-    }
-
-    function __callback(bytes32 myid, string result, bytes proof) {
-        myid=myid;
-        proof=proof;
-        if (msg.sender != oraclize_cbAddress()) throw;
-        LastStatus = result;
-        newTextMessage(LastStatus);
     }
     
     function cost() public returns (uint) {
@@ -1102,6 +1111,7 @@ contract TextMessage is usingOraclize, owned {
     }
     
     function sendText(string phoneNumber, string textBody) public payable {
+        if(!enabled) throw;
         if(msg.value < (costWei * 1 wei)) throw;
         if (oraclize.getPrice("URL") > this.balance) {
         } else {
@@ -1109,6 +1119,14 @@ contract TextMessage is usingOraclize, owned {
             orcData = strConcat("json(", submitData, ").sent");
             oraclize_query("URL", apiURL, submitData);
         }
+    }
+    
+    function __callback(bytes32 myid, string result, bytes proof) {
+        myid=myid;
+        proof=proof;
+        if (msg.sender != oraclize_cbAddress()) throw;
+        LastStatus = result;
+        newTextMessage(LastStatus);
     }
     
     function strConcat(string _a, string _b, string _c, string _d, string _e) internal returns (string){
