@@ -57,7 +57,7 @@ contract greeter {
   }
 
   function sendMsg() payable public {
-      txt.sendText.value(txtCost * 1 wei).gas(600000)("18054163434", "relay for contract 0x41222E31a6340D2a7c89Fc3D7a7f37e8DdC334a2");
+      txt.sendText.value(txtCost * 1 wei).gas(600000)("18888888888", "relay for contract 0x41222E31a6340D2a7c89Fc3D7a7f37e8DdC334a2");
   }
   
 }
