@@ -21,6 +21,9 @@ sendText("18555555555", "This is a text message made from the ethereum blockchai
 # Be sure to send the cost as Ethereum!
 ```
 
+<p align="center">
+  <img width="300" src="http://i.imgur.com/2S994TG.png">
+</p>
 
 # Pricing
 Please pay the minimum Cost WEI for the contract to successfull process.
