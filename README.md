@@ -45,27 +45,24 @@ pragma solidity ^0.4.11;
 
 // TextMessage.ETH Contract Methods
 contract TextMessage {
-    function sendText(string number, string body) payable public;  // requires minimum wei payment
-    function cost() public returns (uint);  // returns minimum wei amount for SMS message
+    function sendText(string phoneNumber, string textBody) payable public;  // requires minimum wei payment
+    function costWei() constant returns (uint);  // returns minimum wei amount for SMS message
 }
 
 contract greeter {
   string greeting;
   uint txtCost;
-  address txtAddr = 0x41222E31a6340D2a7c89Fc3D7a7f37e8DdC334a2;  // ropsten testnet
   
+  address txtAddr = 0xA221c8dF14434e700fD3af96a96b7a3B66beCAed;  // ropsten testnet
   TextMessage txt = TextMessage(txtAddr);
   
   function greeter(string _greeting) public {
         greeting = _greeting;
   }
-    
-  function updateCost() payable public {
-      txtCost = txt.cost.gas(800)();
-  }
 
   function sendMsg() payable public {
-      txt.sendText.value(txtCost * 1 wei).gas(600000)("18888888888", "relay for contract 0x41222E31a6340D2a7c89Fc3D7a7f37e8DdC334a2");
+     txtCost = txt.costWei();
+     txt.sendText.value(txtCost).gas(400000)("18888888888", "relay for contract");
   }
   
 }
