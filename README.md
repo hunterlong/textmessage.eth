@@ -1,7 +1,7 @@
 <p align="center">
   <img width="240" src="http://i.imgur.com/OhQ1ngW.png"><br>
-    <b>TextMessage.eth</b> (BETA)<br>
-  <a href="https://ropsten.etherscan.io/address/0x9b6BAA7DE8751328E8e0a8b872Ff8d36539b313D">Mainnet</a> |
+    <b>TextMessage.eth</b><br>
+  <a href="https://etherscan.io/address/0x9b6BAA7DE8751328E8e0a8b872Ff8d36539b313D#code">Mainnet</a> |
   <a href="#implementing-inside-contracts">Implement</a> |
   <a href="#pricing">Pricing</a><br>
   <br>
@@ -31,7 +31,7 @@ Please pay the minimum Cost WEI for the contract to successfully process.
 
 Pricing for TextMessage.eth may change frequently based on ETH/USD exchange rate. We try to keep it at $0.10 USD in Ether, but as we all know, the exchange rate changes often. 
 ```
-TextMessage txt = TextMessage(0xa237Cc9e37E577A8585db63a6D8a1e8eC42D8cf3); // ropsten testnet
+TextMessage txt = TextMessage(0x9b6BAA7DE8751328E8e0a8b872Ff8d36539b313D);
 uint amount = txt.costWei();
 
 // send 'amount' in wei with sendText
@@ -62,7 +62,7 @@ contract TextMessage {
 contract greeter {
   uint txtCost;
   
-  address txtAddr = 0xa237Cc9e37E577A8585db63a6D8a1e8eC42D8cf3;  // ropsten testnet
+  address txtAddr = 0x9b6BAA7DE8751328E8e0a8b872Ff8d36539b313D;
   TextMessage txt = TextMessage(txtAddr);
   
   function greeter() public { }
@@ -79,7 +79,7 @@ contract greeter {
 # Using Inside Contract
 
 ```
-TextMessage txt = TextMessage(0xa237Cc9e37E577A8585db63a6D8a1e8eC42D8cf3); // ropsten testnet
+TextMessage txt = TextMessage(0x9b6BAA7DE8751328E8e0a8b872Ff8d36539b313D);
 uint amount = txt.costWei();
 
 txt.sendText.value(amount).gas(200000)("18888888888", "relay for contract");
