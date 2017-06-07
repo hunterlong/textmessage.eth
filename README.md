@@ -73,11 +73,8 @@ contract greeter {
 # Using Inside Contract
 
 ```
-TextMessage txt = TextMessage(0x2D3060D18721f9509b179E8962f220bfd8Df9f5F);
-uint amount = txt.costWei
+TextMessage txt = TextMessage(0xA221c8dF14434e700fD3af96a96b7a3B66beCAed); // ropsten testnet
+uint amount = txt.costWei();
 
-txt.sendText.value(amount)("18555555555", "Hey Hey! Bleep Bloop!")
+txt.sendText.value(amount).gas(200000)("18888888888", "relay for contract");
 ```
-
-
-# Supported Countries
