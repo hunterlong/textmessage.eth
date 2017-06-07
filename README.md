@@ -3,7 +3,9 @@
     <b>TextMessage.eth</b> (BETA)<br>
   <a href="https://ropsten.etherscan.io/address/0x9b6BAA7DE8751328E8e0a8b872Ff8d36539b313D">Mainnet</a> |
   <a href="#implementing-inside-contracts">Implement</a> |
-  <a href="#pricing">Pricing</a>
+  <a href="#pricing">Pricing</a><br>
+  <br>
+  <b>0x9b6BAA7DE8751328E8e0a8b872Ff8d36539b313D</b>
   <br><br>
 </p>
 
