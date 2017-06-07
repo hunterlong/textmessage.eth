@@ -34,7 +34,7 @@ Please pay the minimum Cost WEI for the contract to successfull process.
 // TextMessage.ETH Contract Methods
 contract TextMessage {
     function sendText(string number, string body) payable public;  // requires minimum wei payment
-    function cost() public returns (uint);  // returns minimum wei amount for SMS message
+    function costWei() constant returns (uint); // returns minimum wei amount for SMS message
 }
 ```
 
