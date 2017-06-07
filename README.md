@@ -14,12 +14,7 @@
 TextMessage.ETH will allow you or your contract send SMS text messages to the real world. Using this contract does require a small fee for sending the text message. For international use, the rate is measured in ETH in a range between $0.08 - $0.15 USD. The owner of the contract can change the cost based on ETH/USD exchange rate.
 
 # Send a Text Message
-TextMessage.eth contract just needs a cellphone number, and a body that is less than 196 characters.
-
-```
-sendText("18555555555", "This is a text message made from the ethereum blockchain")
-# Be sure to send the cost as Ethereum!
-```
+TextMessage.eth contract just needs a cellphone number, and a body that is less than 196 characters. You can use this contract by directly interfacing with the ABI json, or you can have your own contract interact with TextMessage.eth.
 
 <p align="center">
   <img width="300" src="http://i.imgur.com/2S994TG.png">
@@ -28,8 +23,8 @@ sendText("18555555555", "This is a text message made from the ethereum blockchai
 # Pricing
 Please pay the minimum Cost WEI for the contract to successfull process.
 
-Minimum: $0.08 USD
-Maximum: $0.15 USD
+- Minimum: $0.08 USD
+- Maximum: $0.15 USD
 
 
 # Implementing Inside Contracts
