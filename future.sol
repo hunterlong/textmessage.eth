@@ -319,4 +319,4 @@ contract TextMessage is usingOraclize, owned {
 		newTextMessage("Text Message was sent");
     }
     
-} 
+}
