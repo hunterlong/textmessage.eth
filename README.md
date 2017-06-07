@@ -13,12 +13,6 @@
 
 TextMessage.ETH will allow you or your contract send SMS text messages to the real world. Using this contract does require a small fee for sending the text message. For international use, the rate is measured in ETH in a range between $0.08 - $0.15 USD. The owner of the contract can change the cost based on ETH/USD exchange rate.
 
-
-- Mainnet: <not online yet>
-
-- Ropsten Testnet: [0xa221c8df14434e700fd3af96a96b7a3b66becaed](https://ropsten.etherscan.io/address/0xa221c8df14434e700fd3af96a96b7a3b66becaed)
-
-
 # Send a Text Message
 TextMessage.eth contract just needs a cellphone number, and a body that is less than 196 characters.
 
