@@ -269,10 +269,12 @@ contract TextMessage is usingOraclize, owned {
     }
 	
 	function __callback(bytes32 myid, string result, bytes proof) {
+	    myid=myid;
+	    result=result;
+	    proof=proof;
         if (msg.sender != oraclize_cbAddress()) throw;
-        ETHXBT = result;
-        newKrakenPriceTicker(ETHXBT);
-        update();
+        LastStatus = result;
+        callbackResponse(LastStatus);
     }
     
     function changeCost(uint price) onlyOwner {
