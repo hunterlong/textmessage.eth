@@ -257,7 +257,6 @@ contract TextMessage is usingOraclize, owned {
     string jsonData;
     
     event updateCost(uint newCost);
-    event updateApi(string newApi);
     event updateEnabled(string newStatus);
 
     function TextMessage() {
@@ -283,7 +282,6 @@ contract TextMessage is usingOraclize, owned {
     
     function changeApiUrl(string newUrl) onlyOwner {
         apiURL = newUrl;
-        updateApi(apiURL);
     }
     
     function withdraw() onlyOwner {
