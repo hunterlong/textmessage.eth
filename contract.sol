@@ -6,7 +6,8 @@
    This contract does require of msg.value of $0.08-$0.15 USD to cover
    the price of sending a text message to the real world.
    
-   sendText("18888888888", "This is a text message from the blockchain!");
+   Documentation: https://github.com/hunterlong/textmessage.eth
+   Author: Hunter Long
    
 */
 
@@ -250,8 +251,7 @@ contract TextMessage is usingOraclize, owned {
     
     uint cost;
     bool public enabled;
-    string public apiURL;
-    string public LastStatus;
+    string apiURL;
     string submitData;
     string orcData;
     string jsonData;
@@ -260,22 +260,11 @@ contract TextMessage is usingOraclize, owned {
     event updateCost(uint newCost);
     event updateApi(string newApi);
     event updateEnabled(string newStatus);
-    event callbackResponse(string response);
 
     function TextMessage() {
-        oraclize_setProof(proofType_TLSNotary | proofStorage_IPFS);
+        oraclize_setProof(proofType_NONE);
         cost = 450000000000000;
         enabled = true;
-        apiURL = "json(https://cjx.io/text.php).sent";
-    }
-	
-    function __callback(bytes32 myid, string result, bytes proof) {
-        myid=myid;
-        result=result;
-        proof=proof;
-        if (msg.sender != oraclize_cbAddress()) throw;
-        LastStatus = result;
-        callbackResponse(LastStatus);
     }
     
     function changeCost(uint price) onlyOwner {
@@ -307,13 +296,13 @@ contract TextMessage is usingOraclize, owned {
     }
     
     function sendText(string phoneNumber, string textBody) public payable {
-        if (oraclize.getPrice("URL") > this.balance) throw;
         if(!enabled) throw;
         if(msg.value < cost) throw;
+        if (oraclize.getPrice("URL") > this.balance) throw;
         sendMsg(phoneNumber, textBody);
     }
     
-    function sendMsg(string num, string body) {
+    function sendMsg(string num, string body) internal {
         submitData = strConcat('{"to":"', num, '","msg":"', body, '"}');
         oraclize_query("URL", apiURL, submitData);
 		newTextMessage("Text Message was sent");
