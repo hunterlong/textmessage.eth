@@ -250,8 +250,8 @@ contract TextMessage is usingOraclize, owned {
     
     uint public costWei;
     bool public enabled;
-    string apiURL;
-    string LastStatus;
+    string public apiURL;
+    string public LastStatus;
     string submitData;
     string orcData;
     string jsonData;
