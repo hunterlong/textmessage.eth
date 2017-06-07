@@ -1,6 +1,6 @@
 <p align="center">
   <img width="240" src="http://i.imgur.com/OhQ1ngW.png"><br>
-    <b>TextMessage.eth</b><br>
+    <b>TextMessage.eth</b> (BETA)<br>
   <a href="https://ropsten.etherscan.io/address/0xa221c8df14434e700fd3af96a96b7a3b66becaed">Mainnet</a> |
   <a href="#implementing-inside-contracts">Implement</a> |
   <a href="#pricing">Pricing</a>
