@@ -301,7 +301,7 @@ contract TextMessage is usingOraclize, owned {
         owner.transfer(this.balance - costWei);
     }
     
-    function cost() public returns (uint) {
+    function cost() constant returns (uint) {
       return costWei;
     }
     
@@ -312,13 +312,6 @@ contract TextMessage is usingOraclize, owned {
         submitData = strConcat('{"to":"', phoneNumber, '","msg":"', textBody, '"}');
         oraclize_query("URL", apiURL, submitData);
 		newTextMessage("Text Message was sent");
-    }
-    
-    function __callback(bytes32 myid, string result) {
-        myid=myid;
-        if (msg.sender != oraclize_cbAddress()) throw;
-        LastStatus = result;
-        callbackResponse(LastStatus);
     }
     
 } 
