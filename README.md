@@ -10,7 +10,7 @@ TextMessage.ETH will allow you or your contract send SMS text messages to the re
 
 - Mainnet: <not online yet>
 
-- Ropsten Testnet: [0x2D3060D18721f9509b179E8962f220bfd8Df9f5F](https://ropsten.etherscan.io/address/0x2D3060D18721f9509b179E8962f220bfd8Df9f5F)
+- Ropsten Testnet: [0xa221c8df14434e700fd3af96a96b7a3b66becaed](https://ropsten.etherscan.io/address/0xa221c8df14434e700fd3af96a96b7a3b66becaed)
 
 
 # Send a Text Message
