@@ -1,9 +1,9 @@
 <p align="center">
   <img width="240" src="http://i.imgur.com/OhQ1ngW.png"><br>
     <b>TextMessage.eth</b><br>
-  <a href="#">Mainnet</a> |
-  <a href="#">Testnet</a> |
-  <a href="#">Pricing</a>
+  <a href="https://ropsten.etherscan.io/address/0xa221c8df14434e700fd3af96a96b7a3b66becaed">Mainnet</a> |
+  <a href="#">Implement</a> |
+  <a href="#pricing">Pricing</a>
   <br><br>
 </p>
 
