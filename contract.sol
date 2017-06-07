@@ -6,7 +6,7 @@
    This contract does require of msg.value of $0.08-$0.15 USD to cover
    the price of sending a text message to the real world.
    
-   Documentation: https://github.com/hunterlong/textmessage.eth
+   Documentation: https://hunterlong.github.io/textmessage.eth
    Author: Hunter Long
    
 */
