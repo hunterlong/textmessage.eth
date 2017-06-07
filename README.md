@@ -31,6 +31,7 @@ Maximum: $0.15 USD
 
 # Implementing Inside Contracts
 
+#### TextMessage Contract API
 ```
 // TextMessage.ETH Contract Methods
 contract TextMessage {
@@ -39,7 +40,7 @@ contract TextMessage {
 }
 ```
 
-#### Complete Script
+#### Complete Example Script
 ```
 pragma solidity ^0.4.11;
 
@@ -50,19 +51,16 @@ contract TextMessage {
 }
 
 contract greeter {
-  string greeting;
   uint txtCost;
   
   address txtAddr = 0xA221c8dF14434e700fD3af96a96b7a3B66beCAed;  // ropsten testnet
   TextMessage txt = TextMessage(txtAddr);
   
-  function greeter(string _greeting) public {
-        greeting = _greeting;
-  }
+  function greeter() public { }
 
   function sendMsg() payable public {
      txtCost = txt.costWei();
-     txt.sendText.value(txtCost).gas(400000)("18888888888", "relay for contract");
+     txt.sendText.value(txtCost).gas(200000)("18888888888", "relay for contract");
   }
   
 }
