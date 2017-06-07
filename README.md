@@ -38,10 +38,18 @@ Maximum: $0.15 USD
 # Implementing Inside Contracts
 
 ```
+// TextMessage.ETH Contract Methods
+contract TextMessage {
+    function sendText(string number, string body) payable public;  // requires minimum wei payment
+    function cost() public returns (uint);  // returns minimum wei amount for SMS message
+}
+```
+
+#### Complete Script
+```
 pragma solidity ^0.4.11;
 
 // TextMessage.ETH Contract Methods
-// GNU License - github.com/hunterlong/textmessage.eth
 contract TextMessage {
     function sendText(string number, string body) payable public;  // requires minimum wei payment
     function cost() public returns (uint);  // returns minimum wei amount for SMS message
