@@ -1,6 +1,12 @@
-<center><img width="240" src="http://i.imgur.com/OhQ1ngW.png">
+<p align="center">
+  <img width="240" src="http://i.imgur.com/OhQ1ngW.png"><br>
+    <b>TextMessage.eth</b><br>
+  <a href="#">Mainnet</a> |
+  <a href="#">Testnet</a> |
+  <a href="#">Pricing</a>
+  <br><br>
+</p>
 
-# textmessage.eth
 ### Send SMS messages via Ethereum Contracts
 
 </center>
