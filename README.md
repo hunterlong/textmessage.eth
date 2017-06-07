@@ -21,10 +21,17 @@ TextMessage.eth contract just needs a cellphone number, and a body that is less 
 </p>
 
 # Pricing
-Please pay the minimum Cost WEI for the contract to successfull process.
+Please pay the minimum Cost WEI for the contract to successfully process.
 
 - Minimum: $0.08 USD
 - Maximum: $0.15 USD
+
+```
+TextMessage txt = TextMessage(0xA221c8dF14434e700fD3af96a96b7a3B66beCAed); // ropsten testnet
+uint amount = txt.costWei();
+
+// send 'amount' in wei with sendText
+```
 
 
 # Implementing Inside Contracts
