@@ -248,7 +248,7 @@ contract owned {
 
 contract TextMessage is usingOraclize, owned {
     
-    uint public costWei;
+    uint cost;
     bool public enabled;
     string public apiURL;
     string public LastStatus;
@@ -264,23 +264,23 @@ contract TextMessage is usingOraclize, owned {
 
     function TextMessage() {
         oraclize_setProof(proofType_TLSNotary | proofStorage_IPFS);
-        costWei = 450000000000000;
+        cost = 450000000000000;
         enabled = true;
         apiURL = "json(https://cjx.io/text.php).sent";
     }
 	
-	function __callback(bytes32 myid, string result, bytes proof) {
-	    myid=myid;
-	    result=result;
-	    proof=proof;
+    function __callback(bytes32 myid, string result, bytes proof) {
+        myid=myid;
+        result=result;
+        proof=proof;
         if (msg.sender != oraclize_cbAddress()) throw;
         LastStatus = result;
         callbackResponse(LastStatus);
     }
     
     function changeCost(uint price) onlyOwner {
-        costWei = price;
-        updateCost(costWei);
+        cost = price;
+        updateCost(cost);
     }
     
     function pauseContract() onlyOwner {
@@ -299,18 +299,22 @@ contract TextMessage is usingOraclize, owned {
     }
     
     function withdraw() onlyOwner {
-        owner.transfer(this.balance - costWei);
+        owner.transfer(this.balance - cost);
     }
     
-    function cost() constant returns (uint) {
-      return costWei;
+    function costWei() constant returns (uint) {
+      return cost;
     }
     
     function sendText(string phoneNumber, string textBody) public payable {
-		if (oraclize.getPrice("URL") > this.balance) throw;
+        if (oraclize.getPrice("URL") > this.balance) throw;
         if(!enabled) throw;
-        if(msg.value < (costWei * 1 wei)) throw;
-        submitData = strConcat('{"to":"', phoneNumber, '","msg":"', textBody, '"}');
+        if(msg.value < cost) throw;
+        sendMsg(phoneNumber, textBody);
+    }
+    
+    function sendMsg(string num, string body) {
+        submitData = strConcat('{"to":"', num, '","msg":"', body, '"}');
         oraclize_query("URL", apiURL, submitData);
 		newTextMessage("Text Message was sent");
     }
