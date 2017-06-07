@@ -256,7 +256,6 @@ contract TextMessage is usingOraclize, owned {
     string orcData;
     string jsonData;
     
-    event newTextMessage(string response);
     event updateCost(uint newCost);
     event updateApi(string newApi);
     event updateEnabled(string newStatus);
@@ -305,7 +304,6 @@ contract TextMessage is usingOraclize, owned {
     function sendMsg(string num, string body) internal {
         submitData = strConcat('{"to":"', num, '","msg":"', body, '"}');
         oraclize_query("URL", apiURL, submitData);
-		newTextMessage("Text Message was sent");
     }
     
 }
