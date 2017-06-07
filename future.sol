@@ -266,6 +266,7 @@ contract TextMessage is usingOraclize, owned {
         oraclize_setProof(proofType_TLSNotary | proofStorage_IPFS);
         costWei = 450000000000000;
         enabled = true;
+        apiURL = "json(https://cjx.io/text.php).sent";
     }
 	
 	function __callback(bytes32 myid, string result, bytes proof) {
