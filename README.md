@@ -23,9 +23,11 @@ TextMessage.eth contract just needs a cellphone number, and a body that is less 
 # Pricing
 Please pay the minimum Cost WEI for the contract to successfully process.
 
+- Normal: $0.10 USD
 - Minimum: $0.08 USD
 - Maximum: $0.15 USD
 
+Pricing for TextMessage.eth may change frequently based on ETH/USD exchange rate. We try to keep it at $0.10 USD in Ether, but as we all know, the exchange rate changes often. 
 ```
 TextMessage txt = TextMessage(0xA221c8dF14434e700fD3af96a96b7a3B66beCAed); // ropsten testnet
 uint amount = txt.costWei();
