@@ -113,8 +113,8 @@ input[type="submit"]:hover{
   <h1>TextMessage.eth</h1>
   <p>Send SMS Text Messages via Ethereum Blockchain</p>
   <div class="info">
-    <input type="text" placeholder="Cellphone Number">
-    <input type="email" placeholder="Message">
+    <input type="text" id="number" placeholder="Cellphone Number">
+    <input type="text" id="bodymsg" placeholder="Message">
 	<div class="costwei"></div>
 	<div class="message"></div>
 	<a href="https://github.com/hunterlong/textmessage.eth">View on Github</a>
@@ -173,7 +173,11 @@ tipButton.addEventListener('click', function() {
 
 function runAction() {
 
-   deployedContract.sendText('18054163434', "yoyoyoyo", {value: costWei, gas: 200000}, function(error, result){
+var num = document.getElementById('number').value;
+
+var body = document.getElementById('bodymsg').value;
+
+   deployedContract.sendText(num, body, {value: costWei, gas: 200000}, function(error, result){
 		 if(!error)
 			 console.log(result)
 		 else
