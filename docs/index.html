@@ -56,9 +56,12 @@ tipButton.addEventListener('click', function() {
   
   const deployedContract = web3.eth.contract(abi).at(MY_ADDRESS);
   
-  var costWei = deployedContract.costWei();
-  
-  console.log(costWei);
+  deployedContract.costWei(function(error, result){
+     if(!error)
+         console.log(result)
+     else
+         console.error(error);
+ });
 
   web3.eth.sendTransaction({
     to: MY_ADDRESS,
