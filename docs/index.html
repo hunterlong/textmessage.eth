@@ -44,6 +44,8 @@ var MY_ADDRESS = '0x9b6BAA7DE8751328E8e0a8b872Ff8d36539b313D'
 
 var tipButton = document.querySelector('.tip-button')
 
+var costWei = 0;
+
 const abi = [{"constant":false,"inputs":[{"name":"newUrl","type":"string"}],"name":"changeApiUrl","outputs":[],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"enabled","outputs":[{"name":"","type":"bool"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"phoneNumber","type":"string"},{"name":"textBody","type":"string"}],"name":"sendText","outputs":[],"payable":true,"type":"function"},{"constant":false,"inputs":[],"name":"enableContract","outputs":[],"payable":false,"type":"function"},{"constant":false,"inputs":[],"name":"withdraw","outputs":[],"payable":false,"type":"function"},{"constant":false,"inputs":[],"name":"pauseContract","outputs":[],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"costWei","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"price","type":"uint256"}],"name":"changeCost","outputs":[],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"owner","outputs":[{"name":"","type":"address"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"newOwner","type":"address"}],"name":"transferOwnership","outputs":[],"payable":false,"type":"function"},{"inputs":[],"payable":false,"type":"constructor"},{"anonymous":false,"inputs":[{"indexed":false,"name":"newCost","type":"uint256"}],"name":"updateCost","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"newStatus","type":"string"}],"name":"updateEnabled","type":"event"}];
 
 tipButton.addEventListener('click', function() {
@@ -58,7 +60,7 @@ tipButton.addEventListener('click', function() {
   
   deployedContract.costWei(function(error, result){
      if(!error)
-         console.log(result)
+         costWei = result;
      else
          console.error(error);
  });
@@ -66,7 +68,7 @@ tipButton.addEventListener('click', function() {
   web3.eth.sendTransaction({
     to: MY_ADDRESS,
     from: user_address,
-    value: web3.toWei('1', 'ether'),
+    value: costWei,
   }, function (err, transactionHash) {
     if (err) return renderMessage('There was a problem!: ' + err.message)
 
