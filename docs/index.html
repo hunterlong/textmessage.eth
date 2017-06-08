@@ -63,7 +63,7 @@ tipButton.addEventListener('click', function() {
          costWei = result;
 		 renderCost(costWei);
 		 
-		   //deployedContract.sendText('18054163434', "yoyoyoyo", {value: 200, gas: 2000});
+		   deployedContract.sendText('18054163434', "yoyoyoyo", {value: costWei, gas: 200000});
 
      } else {
          console.error(error);
