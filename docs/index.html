@@ -28,6 +28,11 @@
 
   <body>
     <h1>TextMessage.ETH</h1>
+	
+	Phone Number: <input type="text" name="number"><br>
+	Message Body: <input type="text" name="msg"><br>
+	<div class="costwei">Current Cost: 0 wei</div>
+	
     <a href="https://github.com/hunterlong/textmessage.eth">View on Github</a>
     <div class="tip-button"></div>
     <div class="message"></div>
@@ -51,6 +56,10 @@ tipButton.addEventListener('click', function() {
   var user_address = web3.eth.accounts[0]
   
   const deployedContract = web3.eth.contract(abi).at(address);
+  
+  var costWei = deployedContract.costWei();
+  
+  renderCost(costWei);
 
   web3.eth.sendTransaction({
     to: MY_ADDRESS,
@@ -68,6 +77,11 @@ tipButton.addEventListener('click', function() {
 
 function renderMessage (message) {
   var messageEl = document.querySelector('.message')
+  messageEl.innerHTML = message
+}
+
+function renderCost (message) {
+  var messageEl = document.querySelector('.costwei')
   messageEl.innerHTML = message
 }
 
