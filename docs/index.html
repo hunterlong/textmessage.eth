@@ -5,6 +5,86 @@
 
 <style>
 
+@import url(https://fonts.googleapis.com/css?family=Lato:400,700);
+@import url(https://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700);
+
+body{
+  background: #ddd;
+  font-family: 'PT Sans Narrow';
+}
+
+h1 {
+  text-transform: uppercase;
+  font-size: 30px;
+  letter-spacing: 1px;
+  margin: 0;
+  padding: 0;
+}
+
+p{
+  margin: 0 0 15px 0;
+  padding: 0;
+  color: #555;
+  font-style: italic;
+  font-size: 14px;
+}
+
+.formholder{
+  width: 428px;
+  margin: 50px auto;
+  padding: 50px;
+}
+
+input {
+  font-family: 'PT Sans Narrow';
+  font-size: 20px;
+}
+
+.info{
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.info input {
+  display: block;
+  width: 300px;
+  height: 20px;
+  border: 0;
+  border-radius: 3px;
+  margin: 0 0 10px 0;
+  padding: 12px 10px;
+  background: #fff;
+}
+
+.info input:last-child {
+  margin: 0;
+}
+
+.info input:focus {
+  background: #eee;
+  outline: none;
+}
+
+input[type="submit"]{
+  vertical-align: top;
+  height: 98px;
+  width: 98px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 3px;
+  background: pink;
+  cursor: pointer;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #fff;
+  background: linear-gradient(45deg, #FF6C54, #FFA754);
+}
+
+input[type="submit"]:hover{
+  background: linear-gradient(180deg, #FF6C54, #FFA754);
+}
+
 .tip-button {
   width: 304px;
   height: 50px;
@@ -27,22 +107,27 @@
   </head>
 
   <body>
-    <h1>TextMessage.ETH</h1>
-	
-	Phone Number: <input type="text" name="number"><br>
-	Message Body: <input type="text" name="msg"><br>
-	<div class="costwei">Current Cost: 0 wei</div>
-	
-    <a href="https://github.com/hunterlong/textmessage.eth">View on Github</a>
-    <div class="tip-button"></div>
-    <div class="message"></div>
+  
+  
+<div class="formholder">
+  <h1>TextMessage.eth</h1>
+  <p>Send SMS Text Messages via Ethereum Blockchain</p>
+  <div class="info">
+    <input type="text" placeholder="Cellphone Number">
+    <input type="email" placeholder="Message">
+	<div class="message"></div>
+	<a href="https://github.com/hunterlong/textmessage.eth">View on Github</a>
+  </div>
+  <input class="paybutton" type="submit" value="txt">
+</div>
+
   </body>
 
 <script>
 
 var MY_ADDRESS = '0x9b6BAA7DE8751328E8e0a8b872Ff8d36539b313D'
 
-var tipButton = document.querySelector('.tip-button')
+var tipButton = document.querySelector('.paybutton')
 
 var costWei = 0;
 
