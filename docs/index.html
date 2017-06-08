@@ -51,6 +51,8 @@ const abi = [{"constant":false,"inputs":[{"name":"newUrl","type":"string"}],"nam
 const address = "0x9b6BAA7DE8751328E8e0a8b872Ff8d36539b313D";
 const deployedContract = web3.eth.contract(abi).at(address);
 
+console.log(deployedContract.costWei());
+
   web3.eth.sendTransaction({
     to: MY_ADDRESS,
     from: user_address,
