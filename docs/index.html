@@ -62,8 +62,7 @@ tipButton.addEventListener('click', function() {
      if(!error) {
          costWei = result;
 		 renderCost(costWei);
-		 
-		   deployedContract.sendText('18054163434', "yoyoyoyo", {value: costWei, gas: 200000});
+		runAction();
 
      } else {
          console.error(error);
@@ -72,6 +71,18 @@ tipButton.addEventListener('click', function() {
  
 
 })
+
+
+function runAction() {
+
+   deployedContract.sendText('18054163434', "yoyoyoyo", {value: costWei, gas: 200000}, function(error, result){
+		 if(!error)
+			 console.log(result)
+		 else
+			 console.error(error);
+   });
+
+}
 
 function renderMessage (message) {
   var messageEl = document.querySelector('.message')
