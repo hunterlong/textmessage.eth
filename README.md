@@ -18,9 +18,13 @@ TextMessage.ETH will allow you or your contract send SMS text messages to the re
 
 # Encryption Methods
 
-URL POST: `https://cjx.io/encrypt.php`
+URL POST: `https://cjx.io/encrypt`
 
 Parameter: `value=18185555555`
+
+Response: `7b3031af5b66cf99bfe3f297467cd446`
+
+URL GET: `https://cjx.io/encrypt?value=18185555555`
 
 Response: `7b3031af5b66cf99bfe3f297467cd446`
 
