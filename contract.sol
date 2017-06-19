@@ -3,10 +3,11 @@
    TEXTMESSAGE.ETH
    
    A Ethereum contract to send SMS message through the blockchain.
-   This contract does require of msg.value of $0.08-$0.15 USD to cover
+   This contract does require msg.value of $0.08-$0.15 USD to cover
    the price of sending a text message to the real world.
    
    Documentation: https://hunterlong.github.io/textmessage.eth
+   Github: https://github.com/hunterlong/textmessage.eth
    Author: Hunter Long
    
 */
