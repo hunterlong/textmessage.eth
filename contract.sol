@@ -37,8 +37,8 @@ contract TextMessage is owned {
     uint cost;
     bool public enabled;
     
-    event updateCost(uint newCost);
-    event updateEnabled(string newStatus);
+    event UpdateCost(uint newCost);
+    event UpdateEnabled(string newStatus);
     event NewText(string number, string message);
 
     function TextMessage() {
@@ -48,17 +48,17 @@ contract TextMessage is owned {
     
     function changeCost(uint price) onlyOwner {
         cost = price;
-        updateCost(cost);
+        UpdateCost(cost);
     }
     
     function pauseContract() onlyOwner {
         enabled = false;
-        updateEnabled("Texting has been disabled");
+        UpdateEnabled("Texting has been disabled");
     }
     
     function enableContract() onlyOwner {
         enabled = true;
-        updateEnabled("Texting has been enabled");
+        UpdateEnabled("Texting has been enabled");
     }
     
     function withdraw() onlyOwner {
