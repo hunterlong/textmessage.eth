@@ -54,6 +54,7 @@ uint amount = txt.costWei();
 #### TextMessage Contract API
 ```
 // TextMessage.ETH Contract Methods
+// Encrypt variables here: https://cjx.io/encrypt?value=18888888888
 contract TextMessage {
     function sendText(string number, string body) payable public;  // requires minimum wei payment
     function costWei() constant returns (uint); // returns minimum wei amount for SMS message
