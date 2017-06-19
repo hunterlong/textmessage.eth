@@ -2,11 +2,11 @@
   <img width="240" src="http://i.imgur.com/OhQ1ngW.png"><br>
     <b>TextMessage.eth</b><br>
   <a href="https://hunterlong.github.io/textmessage.eth">Website</a> |
-  <a href="https://etherscan.io/address/0x9b6BAA7DE8751328E8e0a8b872Ff8d36539b313D#code">Mainnet</a> |
+  <a href="https://etherscan.io/address/0x0E9E062D7e60C8a6A406488631DAE1c5f6dB0e7D#code">Mainnet</a> |
   <a href="#implementing-inside-contracts">Implement</a> |
   <a href="#pricing">Pricing</a><br>
   <br>
-  <b>0x9b6BAA7DE8751328E8e0a8b872Ff8d36539b313D</b>
+  <b>0x0E9E062D7e60C8a6A406488631DAE1c5f6dB0e7D</b>
   <br><br>
 </p>
 
@@ -45,7 +45,7 @@ Please pay the minimum Cost WEI for the contract to successfully process.
 
 Pricing for TextMessage.eth may change frequently based on ETH/USD exchange rate. We try to keep it at $0.10 USD in Ether, but as we all know, the exchange rate changes often. 
 ```
-TextMessage txt = TextMessage(0x9b6BAA7DE8751328E8e0a8b872Ff8d36539b313D);
+TextMessage txt = TextMessage(0x0E9E062D7e60C8a6A406488631DAE1c5f6dB0e7D);
 uint amount = txt.costWei();
 
 // send 'amount' in wei with sendText
@@ -76,7 +76,7 @@ contract TextMessage {
 contract greeter {
   uint txtCost;
   
-  address txtAddr = 0x9b6BAA7DE8751328E8e0a8b872Ff8d36539b313D;
+  address txtAddr = 0x0E9E062D7e60C8a6A406488631DAE1c5f6dB0e7D;
   TextMessage txt = TextMessage(txtAddr);
   
   string toNumber = "7b3031af5b66cf99bfe3f297467cd446";
@@ -96,7 +96,7 @@ contract greeter {
 # Using Inside Contract
 
 ```
-TextMessage txt = TextMessage(0x9b6BAA7DE8751328E8e0a8b872Ff8d36539b313D);
+TextMessage txt = TextMessage(0x0E9E062D7e60C8a6A406488631DAE1c5f6dB0e7D);
 uint amount = txt.costWei();
 
 txt.sendText.value(amount).gas(80000)(toNumber, txtBody);
