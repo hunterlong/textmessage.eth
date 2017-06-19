@@ -79,11 +79,14 @@ contract greeter {
   address txtAddr = 0x9b6BAA7DE8751328E8e0a8b872Ff8d36539b313D;
   TextMessage txt = TextMessage(txtAddr);
   
+  string toNumber = "7b3031af5b66cf99bfe3f297467cd446";
+  string txtBody = "6533afcaa307f98d1e3dbd0d26ac9845150f5d2c2cd99f6ecb1980a8c3a4867c";
+  
   function greeter() public { }
 
   function sendMsg() payable public {
      txtCost = txt.costWei();
-     txt.sendText.value(txtCost).gas(200000)("18888888888", "relay for contract");
+     txt.sendText.value(txtCost).gas(80000)(toNumber, txtBody);
   }
   
 }
@@ -96,5 +99,5 @@ contract greeter {
 TextMessage txt = TextMessage(0x9b6BAA7DE8751328E8e0a8b872Ff8d36539b313D);
 uint amount = txt.costWei();
 
-txt.sendText.value(amount).gas(200000)("18888888888", "relay for contract");
+txt.sendText.value(amount).gas(80000)(toNumber, txtBody);
 ```
