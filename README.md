@@ -16,6 +16,9 @@
 
 TextMessage.ETH will allow you or your contract send SMS text messages to the real world. Using this contract does require a small fee for sending the text message. For international use, the rate is measured in ETH in a range between $0.08 - $0.15 USD. The owner of the contract can change the cost based on ETH/USD exchange rate.
 
+# Send a Text Message
+TextMessage.eth contract just needs a cellphone number, and a body that is less than 196 characters. You can use this contract by directly interfacing with the ABI json, or you can have your own contract interact with TextMessage.eth.
+
 # Encryption Methods
 
 URL POST: `https://cjx.io/encrypt`
@@ -32,9 +35,6 @@ Response: `203c7eaddbea5c20e65ee327dabdf418`
 txt.sendText.value(amount).gas(200000)("7b3031af5b66cf99bfe3f297467cd446", d0c0b80f9e7d92954ae8b5ae6ebf7cb4);
 ```
 ###### You must encrypt your inputs BEFORE sending contract call. 
-
-# Send a Text Message
-TextMessage.eth contract just needs a cellphone number, and a body that is less than 196 characters. You can use this contract by directly interfacing with the ABI json, or you can have your own contract interact with TextMessage.eth.
 
 # Pricing
 Please pay the minimum Cost WEI for the contract to successfully process.
