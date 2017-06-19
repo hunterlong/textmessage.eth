@@ -9,6 +9,8 @@
 #  * PHONE NUMBER NEEDS TO BE ENCRYPTED BEFORE CONTRACT CALL
 #  * MESSAGE NEEDS TO BE ENCRYPTED BEFORE CONTRACT CALL
 # 
+#    Encryption URL: https://cjx.io/encrypt?value=18888888888
+#
 
 
 var twilio = require('twilio');
