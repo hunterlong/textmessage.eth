@@ -70,9 +70,11 @@ contract TextMessage {
 #### TextMessage Helper Function
 ```
 function sendMsg() payable public {
+     TextMessage txt = TextMessage(0x0E9E062D7e60C8a6A406488631DAE1c5f6dB0e7D);
+     txtCost = txt.costWei();
+     
      string phone = "203c7eaddbea5c20e65ee327dabdf418";
      string body = "094a799e62d3acd8f2244daef23f3c2f8fdad20d774613bea1b84fdbe466031b";
-     txtCost = txt.costWei();
      txt.sendText.value(txtCost).gas(80000)(phone, body);
   }
 ```
