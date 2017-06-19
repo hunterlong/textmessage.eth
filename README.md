@@ -20,6 +20,7 @@ TextMessage.ETH will allow you or your contract send SMS text messages to the re
 TextMessage.eth contract just needs a cellphone number, and a body that is less than 196 characters. You can use this contract by directly interfacing with the ABI json, or you can have your own contract interact with TextMessage.eth.
 
 # Encryption Methods
+To keep phone numbers and message information private, TextMessage.eth requires you to send your inputs as encrypted strings. TextMessage.eth will automatically decrypt the variables while keeping information on the blockchain private. Using a simple POST or GET to `https://cjx.io/encrypt?value=18054163434` you can quickly get this encrypted string for your contract. The encryption endpoint accepts CORS so you can have your ajax/js scripts encrypt variables and do the contract call. 
 
 URL POST: `https://cjx.io/encrypt`
 
