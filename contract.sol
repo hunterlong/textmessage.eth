@@ -35,17 +35,13 @@ contract TextMessage is owned {
     
     uint cost;
     bool public enabled;
-    string apiURL;
-    string submitData;
-    string orcData;
-    string jsonData;
     
     event updateCost(uint newCost);
     event updateEnabled(string newStatus);
     event NewText(string number, string message);
 
     function TextMessage() {
-        cost = 450000000000000;
+        cost = 380000000000000;
         enabled = true;
     }
     
@@ -64,12 +60,8 @@ contract TextMessage is owned {
         updateEnabled("Texting has been enabled");
     }
     
-    function changeApiUrl(string newUrl) onlyOwner {
-        apiURL = newUrl;
-    }
-    
     function withdraw() onlyOwner {
-        owner.transfer(this.balance - cost);
+        owner.transfer(this.balance);
     }
     
     function costWei() constant returns (uint) {
