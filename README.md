@@ -92,8 +92,7 @@ contract TextMessage {
 contract greeter {
   uint txtCost;
   
-  address txtAddr = 0x0E9E062D7e60C8a6A406488631DAE1c5f6dB0e7D;
-  TextMessage txt = TextMessage(txtAddr);
+  TextMessage txt = TextMessage(0x0E9E062D7e60C8a6A406488631DAE1c5f6dB0e7D);
   
   string toNumber = "7b3031af5b66cf99bfe3f297467cd446";
   string txtBody = "6533afcaa307f98d1e3dbd0d26ac9845150f5d2c2cd99f6ecb1980a8c3a4867c";
