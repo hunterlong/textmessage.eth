@@ -22,11 +22,11 @@ URL POST: `https://cjx.io/encrypt`
 
 Parameter: `value=18185555555`
 
-Response: `7b3031af5b66cf99bfe3f297467cd446`
+Response: `203c7eaddbea5c20e65ee327dabdf418`
 
 URL GET: `https://cjx.io/encrypt?value=18185555555`
 
-Response: `7b3031af5b66cf99bfe3f297467cd446`
+Response: `203c7eaddbea5c20e65ee327dabdf418`
 
 ```
 txt.sendText.value(amount).gas(200000)("7b3031af5b66cf99bfe3f297467cd446", d0c0b80f9e7d92954ae8b5ae6ebf7cb4);
