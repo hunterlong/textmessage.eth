@@ -6,7 +6,7 @@
   <a href="#implementing-inside-contracts">Implement</a> |
   <a href="#pricing">Pricing</a><br>
   <br>
-  <b>TextMessage(0x0E9E062D7e60C8a6A406488631DAE1c5f6dB0e7D)</b>
+  TextMessage(<b>0x0E9E062D7e60C8a6A406488631DAE1c5f6dB0e7D</b>)
   <br><br>
 </p>
 
