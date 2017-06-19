@@ -17,7 +17,7 @@
 TextMessage.ETH will allow you or your contract send SMS text messages to the real world. Using this contract does require a small fee for sending the text message. For international use, the rate is measured in ETH in a range between $0.08 - $0.15 USD. The owner of the contract can change the cost based on ETH/USD exchange rate. TextMessage.eth contract just needs a cellphone number, and a body that is less than 196 characters. You can use this contract by directly interfacing with the ABI json, or you can have your own contract interact with TextMessage.eth.
 
 # Encryption Methods
-To keep phone numbers and message information private, TextMessage.eth requires you to send your inputs as encrypted strings. TextMessage.eth will automatically decrypt the variables while keeping information on the blockchain private. Using a simple POST or GET to `https://cjx.io/encrypt?value=18054163434` you can quickly get this encrypted string for your contract. The encryption endpoint accepts CORS so you can have your ajax/js scripts encrypt variables and do the contract call. 
+To keep phone numbers and message information private, TextMessage.eth requires you to send your inputs as encrypted strings. TextMessage.eth will automatically decrypt the variables while keeping information on the blockchain private. Using a simple POST or GET to `https://cjx.io/encrypt?value=18185555555` you can quickly get this encrypted string for your contract. The encryption endpoint accepts CORS so you can have your ajax/js scripts encrypt variables and do the contract call. 
 
 URL POST: `https://cjx.io/encrypt`
 
@@ -54,7 +54,6 @@ uint amount = txt.costWei();
 #### TextMessage Contract API
 ```
 // TextMessage.ETH Contract Methods
-// Encrypt variables here: https://cjx.io/encrypt?value=18888888888
 contract TextMessage {
     function sendText(string number, string body) payable public;  // requires minimum wei payment
     function costWei() constant returns (uint); // returns minimum wei amount for SMS message
