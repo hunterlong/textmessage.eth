@@ -18,7 +18,7 @@ TextMessage.ETH will allow you or your contract send SMS text messages to the re
 
 # Encryption Methods
 
-URL POST: `https://pending.io/eth/encrypt.php`
+URL POST: `https://cjx.io/encrypt.php`
 
 Parameter: `value=18185555555`
 
@@ -31,6 +31,10 @@ txt.sendText.value(amount).gas(200000)("7b3031af5b66cf99bfe3f297467cd446", d0c0b
 
 # Send a Text Message
 TextMessage.eth contract just needs a cellphone number, and a body that is less than 196 characters. You can use this contract by directly interfacing with the ABI json, or you can have your own contract interact with TextMessage.eth.
+
+| Contract Call             | Estimated Gas Value | Gas Ether Value        | ETH Sent (TXT fee)      |
+| ------------------------- |:-------------------:| ------------------:| ----------------------- |
+| sendText(phone,message)   | 32,635              | 0.001011685        |       0.00039           |
 
 <p align="center">
   <img width="300" src="http://i.imgur.com/2S994TG.png">
