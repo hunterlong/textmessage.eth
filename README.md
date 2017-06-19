@@ -14,27 +14,19 @@
 
 </center>
 
-TextMessage.ETH will allow you or your contract send SMS text messages to the real world. Using this contract does require a small fee for sending the text message. For international use, the rate is measured in ETH in a range between $0.08 - $0.15 USD. The owner of the contract can change the cost based on ETH/USD exchange rate.
-
-# Send a Text Message
-TextMessage.eth contract just needs a cellphone number, and a body that is less than 196 characters. You can use this contract by directly interfacing with the ABI json, or you can have your own contract interact with TextMessage.eth.
+TextMessage.ETH will allow you or your contract send SMS text messages to the real world. Using this contract does require a small fee for sending the text message. For international use, the rate is measured in ETH in a range between $0.08 - $0.15 USD. The owner of the contract can change the cost based on ETH/USD exchange rate. TextMessage.eth contract just needs a cellphone number, and a body that is less than 196 characters. You can use this contract by directly interfacing with the ABI json, or you can have your own contract interact with TextMessage.eth.
 
 # Encryption Methods
 To keep phone numbers and message information private, TextMessage.eth requires you to send your inputs as encrypted strings. TextMessage.eth will automatically decrypt the variables while keeping information on the blockchain private. Using a simple POST or GET to `https://cjx.io/encrypt?value=18054163434` you can quickly get this encrypted string for your contract. The encryption endpoint accepts CORS so you can have your ajax/js scripts encrypt variables and do the contract call. 
 
 URL POST: `https://cjx.io/encrypt`
 
-Parameter: `value=18185555555`
-
-Response: `203c7eaddbea5c20e65ee327dabdf418`
+POST Parameter: `value=18185555555`
 
 URL GET: `https://cjx.io/encrypt?value=18185555555`
 
 Response: `203c7eaddbea5c20e65ee327dabdf418`
 
-```
-txt.sendText.value(amount).gas(80000)("203c7eaddbea5c20e65ee327dabdf418", d0c0b80f9e7d92954ae8b5ae6ebf7cb4);
-```
 ###### You must encrypt your inputs BEFORE sending contract call. 
 
 # Pricing
@@ -49,13 +41,13 @@ Please pay the minimum Cost WEI for the contract to successfully process.
 - Maximum: $0.15 USD
 
 Pricing for TextMessage.eth may change frequently based on ETH/USD exchange rate. We try to keep it at $0.10 USD in Ether, but as we all know, the exchange rate changes often. 
+
 ```
 TextMessage txt = TextMessage(0x0E9E062D7e60C8a6A406488631DAE1c5f6dB0e7D);
 uint amount = txt.costWei();
 
 // send 'amount' in wei with sendText
 ```
-
 
 # Implementing Inside Contracts
 
@@ -70,11 +62,11 @@ contract TextMessage {
 
 #### TextMessage Helper Function
 ```
-function sendMsg() payable public {
+function sendMsg() {
      TextMessage txt = TextMessage(0x0E9E062D7e60C8a6A406488631DAE1c5f6dB0e7D);
      txtCost = txt.costWei();
      
-     string phone = "203c7eaddbea5c20e65ee327dabdf418";
+     string phone = "203c7eaddbea5c20e65ee327dabdf418"; 
      string body = "094a799e62d3acd8f2244daef23f3c2f8fdad20d774613bea1b84fdbe466031b";
      txt.sendText.value(txtCost).gas(80000)(phone, body);
   }
@@ -92,28 +84,19 @@ contract TextMessage {
 
 contract greeter {
   uint txtCost;
+  TextMessage txt;
   
-  TextMessage txt = TextMessage(0x0E9E062D7e60C8a6A406488631DAE1c5f6dB0e7D);
-  
-  string toNumber = "7b3031af5b66cf99bfe3f297467cd446";
-  string txtBody = "6533afcaa307f98d1e3dbd0d26ac9845150f5d2c2cd99f6ecb1980a8c3a4867c";
-  
-  function greeter() public { }
+  function greeter() {
+     txt = TextMessage(0x0E9E062D7e60C8a6A406488631DAE1c5f6dB0e7D);
+  }
 
-  function sendMsg() payable public {
+  function sendMsg() {
      txtCost = txt.costWei();
-     txt.sendText.value(txtCost).gas(80000)(toNumber, txtBody);
+     if (this.balance < txtCost) throw;
+     string memory phone = "203c7eaddbea5c20e65ee327dabdf418"; 
+     string memory body = "094a799e62d3acd8f2244daef23f3c2f8fdad20d774613bea1b84fdbe466031b";
+     txt.sendText.value(txtCost).gas(80000)(phone, body);
   }
   
 }
-```
-
-
-# Using Inside Contract
-
-```
-TextMessage txt = TextMessage(0x0E9E062D7e60C8a6A406488631DAE1c5f6dB0e7D);
-uint amount = txt.costWei();
-
-txt.sendText.value(amount).gas(80000)(toNumber, txtBody);
 ```
