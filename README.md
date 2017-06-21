@@ -36,7 +36,8 @@ Response: `203c7eaddbea5c20e65ee327dabdf418`
 </p>
 
 <p align="right">
-Please pay the minimum Cost WEI for the contract to successfully process. Pricing for TextMessage.eth may change frequently based on ETH/USD exchange rate. We try to keep it at $0.10 USD in Ether, but as we all know, the exchange rate changes often. 
+Please pay the minimum Cost WEI for the contract to successfully process. Pricing for TextMessage.eth may change frequently based on ETH/USD exchange rate. We try to keep it at $0.10 USD in Ether, but as we all know, the exchange rate changes often.
+</p>
 
 | Contract Call             | Estimated Gas Value | Gas Ether Value        | ETH Sent (TXT fee)      |
 | ------------------------- |:-------------------:| ------------------:| ----------------------- |
@@ -52,7 +53,6 @@ uint amount = txt.costWei();
 
 // send 'amount' in wei with sendText
 ```
-</p>
 
 # Implementing Inside Contracts
 
