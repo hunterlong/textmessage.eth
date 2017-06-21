@@ -79,8 +79,6 @@ function renderCost (message) {
 
 function SendText(num,body) {
 
-alert("Sending: "+num+" Body: "+body);
-
   deployedContract.sendText(num, body, {value: costWei, gas: 50000}, function(error, result){
     if(!error)
       console.log(result);
