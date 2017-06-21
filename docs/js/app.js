@@ -35,7 +35,7 @@ $("#sendthetxt").click(function() {
 
 }
 
-}
+});
 
 
 
