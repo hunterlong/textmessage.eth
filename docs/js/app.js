@@ -7,10 +7,12 @@ const abi = [{"constant":true,"inputs":[],"name":"enabled","outputs":[{"name":""
 var deployedContract;
 
 
-function SubmitTextForm() {
+$("#sendthetxt").click(function() {
 
   var phone = $("#number").val();
   var message = $("#bodymsg").val();
+
+  if (message!=''&&phone!=''){
 
   $.ajax({
     url: "https://cjx.io/encrypt",type: "POST",data: "value="+encodeURI(phone),
@@ -31,7 +33,7 @@ function SubmitTextForm() {
       }
   });
 
-
+}
 
 }
 
@@ -41,6 +43,7 @@ function SubmitTextForm() {
 window.addEventListener("load", function(){
 
   if (typeof web3 === 'undefined') {
+    window.web3 = new Web3(new Web3.providers.HttpProvider("https://main.cjx.io"));
     return renderMessage('<div>You need to install <a href=“https://metmask.io“>MetaMask </a> to use this feature.  <a href=“https://metmask.io“>https://metamask.io</a></div>')
   }
 
@@ -49,7 +52,7 @@ window.addEventListener("load", function(){
      deployedContract.costWei(function(error, result){
      if(!error) {
          costWei = result;
-		 renderCost(costWei);
+		 renderCost(web3.fromWei(costWei, 'ether'));
 
      } else {
          console.error(error);
