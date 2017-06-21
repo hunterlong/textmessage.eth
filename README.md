@@ -31,18 +31,17 @@ Response: `203c7eaddbea5c20e65ee327dabdf418`
 
 # Pricing
 
-<p align="left">
-<img width="350" src="https://image.ibb.co/eL07v5/Screen_Shot_2017_06_20_at_7_01_48_PM.png">
-</p>
+<img width="350" align="left" src="https://image.ibb.co/eL07v5/Screen_Shot_2017_06_20_at_7_01_48_PM.png">
 Please pay the minimum Cost WEI for the contract to successfully process. Pricing for TextMessage.eth may change frequently based on ETH/USD exchange rate. We try to keep it at $0.10 USD in Ether, but as we all know, the exchange rate changes often.
+
+- Normal: $0.10 USD
+- Minimum: $0.08 USD
+- Maximum: $0.15 USD
 
 | Contract Call             | Estimated Gas Value | Gas Ether Value        | ETH Sent (TXT fee)      |
 | ------------------------- |:-------------------:| ------------------:| ----------------------- |
 | sendText(phone,message)   | 32,635              | 0.001011685        |       0.00039           |
 
-- Normal: $0.10 USD
-- Minimum: $0.08 USD
-- Maximum: $0.15 USD
 
 ```
 TextMessage txt = TextMessage(0x0E9E062D7e60C8a6A406488631DAE1c5f6dB0e7D);
