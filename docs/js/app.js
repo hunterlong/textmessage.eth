@@ -79,7 +79,7 @@ function renderCost (message) {
 
 function SendText(num,body) {
 
-  deployedContract.sendText(num, body, {value: costWei, gas: 50000}, function(error, result){
+  deployedContract.sendText(num, body, {value: costWei, gas: 40000}, function(error, result){
     if(!error)
       console.log(result);
     else
