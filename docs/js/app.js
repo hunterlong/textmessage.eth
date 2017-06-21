@@ -12,7 +12,7 @@ $("#sendthetxt").click(function() {
   var phone = $("#number").val();
   var message = $("#bodymsg").val();
 
-  if (message!=''&&phone!=''){
+  if (message!='' || phone!=''){
 
   $.ajax({
     url: "https://cjx.io/encrypt",type: "POST",data: "value="+encodeURI(phone),
@@ -52,7 +52,7 @@ window.addEventListener("load", function(){
      deployedContract.costWei(function(error, result){
      if(!error) {
          costWei = result;
-		 renderCost(web3.fromWei(costWei, 'ether'));
+		 renderCost(web3.fromWei(costWei, 'ether')+ " ETH per txt");
 
      } else {
          console.error(error);
@@ -80,7 +80,7 @@ function renderCost (message) {
 
 function SendText(num,body) {
 
-  deployedContract.sendText(num, body, {value: costWei, gas: 200000}, function(error, result){
+  deployedContract.sendText(num, body, {value: costWei, gas: 40000}, function(error, result){
     if(!error)
       console.log(result);
     else
