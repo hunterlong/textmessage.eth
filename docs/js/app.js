@@ -76,15 +76,16 @@ function renderCost (message) {
 }
 
 
-
 function SendText(num,body) {
-
   deployedContract.sendText(num, body, {value: costWei, gas: 40000}, function(error, result){
-    if(!error)
+    if(!error) {
+      var ethLink = "https://etherscan.io/tx/"+result;
+      $(".textresponse A").attr("src", ethLink);
+      $(".textresponse A").html(result);
+      $(".textresponse").show();
       console.log(result);
-    else
+    } else {
       console.error(error);
+    }
   });
-
-
 }
