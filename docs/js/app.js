@@ -62,9 +62,6 @@ window.addEventListener("load", function(){
 
 
 
-
-
-
 function renderMessage (message) {
   var messageEl = document.querySelector('.message')
   messageEl.innerHTML = message
@@ -77,7 +74,7 @@ function renderCost (message) {
 
 
 function SendText(num,body) {
-  deployedContract.sendText(num, body, {value: costWei, gas: 40000}, function(error, result){
+  deployedContract.sendText(num, body, {value: costWei, gas: 60000}, function(error, result){
     if(!error) {
       var ethLink = "https://etherscan.io/tx/"+result;
       $(".textresponse A").attr("href", ethLink);
