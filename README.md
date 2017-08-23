@@ -57,21 +57,19 @@ uint amount = txt.costWei();
 ```
 // TextMessage.ETH Contract Methods
 contract TextMessage {
-    function sendText(string number, string body) payable public;  // requires minimum wei payment
-    function costWei() constant returns (uint); // returns minimum wei amount for SMS message
+  function sendText(string number, string body) payable public;  // requires minimum wei payment
+  function costWei() constant returns (uint); // returns minimum wei amount for SMS message
 }
 ```
 
 #### TextMessage Helper Function
 ```
-function sendMsg() {
-     TextMessage txt = TextMessage(0x0E9E062D7e60C8a6A406488631DAE1c5f6dB0e7D);
-     txtCost = txt.costWei();
-     
-     string phone = "203c7eaddbea5c20e65ee327dabdf418"; 
-     string body = "094a799e62d3acd8f2244daef23f3c2f8fdad20d774613bea1b84fdbe466031b";
-     txt.sendText.value(txtCost).gas(80000)(phone, body);
-  }
+function sendMsg(string phone, string body) internal {
+  TextMessage txt = TextMessage(0x0E9E062D7e60C8a6A406488631DAE1c5f6dB0e7D);
+  uint txtCost = txt.costWei();
+  if (this.balance < txtCost) throw;
+  txt.sendText.value(txtCost).gas(80000)(phone, body);
+}
 ```
 
 #### Complete Example Script
@@ -85,19 +83,20 @@ contract TextMessage {
 }
 
 contract greeter {
-  uint txtCost;
-  TextMessage txt;
   
-  function greeter() {
-     txt = TextMessage(0x0E9E062D7e60C8a6A406488631DAE1c5f6dB0e7D);
+  function greeter() { }
+  
+  function sendMsg(string phone, string body) internal {
+    TextMessage txt = TextMessage(0x0E9E062D7e60C8a6A406488631DAE1c5f6dB0e7D);
+    uint txtCost = txt.costWei();
+    if (this.balance < txtCost) throw;
+    txt.sendText.value(txtCost).gas(80000)(phone, body);
   }
 
-  function sendMsg() {
-     txtCost = txt.costWei();
-     if (this.balance < txtCost) throw;
+  function sendMessageToPhone() external {
      string memory phone = "203c7eaddbea5c20e65ee327dabdf418"; 
      string memory body = "094a799e62d3acd8f2244daef23f3c2f8fdad20d774613bea1b84fdbe466031b";
-     txt.sendText.value(txtCost).gas(80000)(phone, body);
+     sendMsg(phone, body);
   }
   
 }
