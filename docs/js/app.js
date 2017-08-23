@@ -19,12 +19,14 @@ $("#sendthetxt").click(function() {
     success: function(result)
       {
         phone = result;
+        $(".phoneEncrypted").html("Encrypted Phone Number: \""+phone+"\"");
 
         $.ajax({
           url: "https://cjx.io/encrypt",type: "POST",data: "value="+encodeURI(message),
           success: function(result)
             {
               message = result;
+              $(".messageEncrypted").html("Encrypted Message Body: \""+message+"\"");
 
               SendText(phone,message);
 
