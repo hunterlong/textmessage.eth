@@ -19,7 +19,8 @@ contract example {
     
   function sendMsg() payable public {
       txtCost = txt.costWei();
-      txt.sendText.value(txtCost).gas(400000)("18888888888", "relay for contract");
+      // encrypt your values at https://cjx.io/encrypt?value=18055555555
+      txt.sendText.value(txtCost).gas(80000)("7b3031af5b66cf99bfe3f297467cd446", "716e01d0ecc1021a09fd27758fa377d5");
   }
   
 }
